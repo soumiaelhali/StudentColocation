@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Offer;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $offers = Offer::orderBy('created_at', 'desc')
+    ->limit(7)
+    ->get();
+
+    return view('home' , [
+    'offers' => $offers
+    ]);
 });
+
+Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout');
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/offer', 'OfferController@index')->name('offer');
+Route::get('/listoffer', 'OfferController@showlist')->name('showlist');
+Route::get('/listdemand', 'DemandController@index')->name('listdemand');
+Route::get('/adddemand', 'DemandController@add')->name('adddemand');
+Route::resource('offer', 'OfferController');
+Route::resource('demand', 'DemandController');
+
+

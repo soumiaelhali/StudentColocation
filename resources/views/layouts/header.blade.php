@@ -1,9 +1,12 @@
 <header class="main_menu home_menu">
-    <div class="container">
+    <div class="container " style="background-color: aliceblue">
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                    <a class="navbar-brand" href="index.html">
+                        <!--<img src="img/logo.png" alt="logo"> -->
+                        <h1>Student Coloco</h1>
+                    </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -11,34 +14,28 @@
                     <div class="collapse navbar-collapse main-menu-item" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{url('/')}}">Home<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">about</a>
+                            <a class="nav-link" href="{{route('showlist')}}">Offers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Properties.html">Properties</a>
+                                <a class="nav-link" href="{{route('listdemand')}}">Demands</a>
                             </li>
+                            @auth
                             <li class="nav-item">
-                                <a class="nav-link page-scroll" href="blog.html">Blog</a>
+                                <a class="nav-link" href="{{route('logout')}}">Logout</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Pages
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                    <a class="dropdown-item" href="elements.html">Elements</a>
-                                </div>
-                            </li>
+                            @endauth
+                            @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact us</a>
+                                <a class="nav-link" href="{{route('login')}}">Login & register</a>
                             </li>
+                            @endguest
                         </ul>
                     </div>
                     <div class="btn_1 d-none d-lg-block">
-                        <a href="#" class="float-right">Submit property</a>
+                        <a href="{{url('/offer')}}" class="float-right">Submit property</a>
                     </div>
                 </nav>
             </div>
